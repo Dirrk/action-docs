@@ -1,0 +1,32 @@
+name: action-docs
+author: Derek Rada
+description: Github action that generates docs for a github action and injects them into the README.md
+inputs:
+  action_docs_working_dir:
+    description: Directory that contains the action.yml and README.md
+    required: false
+    default: '.'
+  action_docs_template_file:
+    description: Template file to use for rendering the markdown docs
+    required: false
+    default: '/src/default_template.tpl'
+  action_docs_git_push:
+    description: If true it will commit and push the changes
+    required: false
+    default: 'true'
+  action_docs_git_commit_message:
+    description: Commit message
+    required: false
+    default: 'action-docs: automated action'
+
+outputs:
+  num_changed:
+    description: Number of files changed
+
+runs:
+  using: docker
+  image: Dockerfile
+
+branding:
+  icon: file-text
+  color: gray-dark

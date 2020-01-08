@@ -1,0 +1,38 @@
+name: Pull Request actions
+on:
+  - pull_request
+jobs:
+
+  label:
+    name: 'PR Labeler'
+    if: github.event.action == 'opened'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: TimonVS/pr-labeler-action@v3
+        with:
+          configuration-path: .github/pr-labeler.yml
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  build:
+    name: 'Build example docs'
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        ref: ${{ github.event.pull_request.head.ref }}
+
+    - name: Should generate README.md for test_a
+      uses: ./
+      with:
+        action_docs_working_dir: examples/test_a
+        tf_docs_git_push: 'false'
+
+    - name: Should generate README.md for test_b
+      uses: ./
+      with:
+        tf_docs_working_dir: examples/test_b
+        tf_docs_git_push: 'false'
+
+    - name: Generate this repos README.md
+      uses: ./
