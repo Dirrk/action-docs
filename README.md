@@ -13,7 +13,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
       with:
-        ref: {{"${{"}} github.event.pull_request.head.ref {{"}}"}}
+        ref: ${{ github.event.pull_request.head.ref }}
 
     - name: Update README.md from action.yml
       uses: Dirrk/action-docs@v1
