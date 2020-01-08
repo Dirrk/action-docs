@@ -26,13 +26,13 @@ jobs:
       uses: ./
       with:
         action_docs_working_dir: examples/test_a
-        tf_docs_git_push: 'false'
+        action_docs_git_push: 'false'
 
     - name: Should generate README.md for test_b
       uses: ./
       with:
-        tf_docs_working_dir: examples/test_b
-        tf_docs_git_push: 'false'
+        action_docs_working_dir: examples/test_b
+        action_docs_git_push: 'false'
 
     - name: Generate this repos README.md
       uses: ./
