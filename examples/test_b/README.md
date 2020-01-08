@@ -66,6 +66,23 @@ jobs:
 This was a simplified example showing the basic features of these Terraform GitHub Actions. Please refer to the examples within the `examples` directory for other common workflows.
 
 <!--- BEGIN_ACTION_DOCS --->
+## Inputs
+
+| Name | Description | Default | Required |
+|------|-------------|---------|----------|
+| tf\_actions\_cli\_credentials\_hostname | Hostname for the CLI credentials file. | app.terraform.io | false |
+| tf\_actions\_cli\_credentials\_token | Token for the CLI credentials file. | N/A | false |
+| tf\_actions\_comment | Whether or not to comment on pull requests. | true | false |
+| tf\_actions\_subcommand | Terraform subcommand to execute. | N/A | true |
+| tf\_actions\_version | Terraform version to install. | N/A | true |
+| tf\_actions\_working\_dir | Terraform working directory. | . | false |
+
+## Outputs
+
+| Name | Description |
+|------|-------------|
+| tf\_actions\_output | The Terraform outputs in JSON format. |
+| tf\_actions\_plan\_has\_changes | Whether or not the Terraform plan contained changes. |
 <!--- END_ACTION_DOCS --->
 
 ## Secrets
