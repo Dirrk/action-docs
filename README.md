@@ -1,6 +1,26 @@
 # action-docs
 Github action that generates docs for a github action and injects them into the README.md
 
+# Usage
+To use action-docs github action, configure a YAML workflow file, e.g. `.github/workflows/documentation.yml`, with the following:
+```yaml
+name: Generate action docs
+on:
+  - pull_request
+jobs:
+  docs:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        ref: {{"${{"}} github.event.pull_request.head.ref {{"}}"}}
+
+    - name: Update README.md from action.yml
+      uses: Dirrk/action-docs@v1
+```
+| WARNING: This requires your README.md to contain comment delimiters, view this file in raw mode to see how it works |
+| --- |
+
 <!--- BEGIN_ACTION_DOCS --->
 ## Inputs
 
