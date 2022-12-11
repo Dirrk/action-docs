@@ -13,7 +13,7 @@
 
 | Name | Description |
 |------|-------------|
-{{- if $action.outputs }}
+{{- if has $action "outputs" }}
 {{- range $key, $output := $action.outputs }}
 | {{ tmpl.Exec "escape_chars" $key }} | {{ if (has $output "description") }}{{ tmpl.Exec "sanatize_string" $output.description }}{{ else }}{{ tmpl.Exec "escape_chars" $key }}{{ end }} |
 {{- end }}
