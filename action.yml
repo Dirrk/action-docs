@@ -19,9 +19,9 @@ inputs:
     required: false
     default: 'action-docs: automated action'
 
-outputs:
-  num_changed:
-    description: Number of files changed
+# outputs:
+#   num_changed:
+#     description: Number of files changed
 
 runs:
   using: docker
