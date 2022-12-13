@@ -63,7 +63,7 @@ update_doc "${INPUT_ACTION_DOCS_WORKING_DIR}"
 
 if [ "${INPUT_ACTION_DOCS_GIT_PUSH}" = "true" ]; then
   git_commit
-  git push
+  git push origin HEAD:${GITHUB_REF}
 else
   git_changed
 fi
