@@ -13,9 +13,14 @@ git_changed () {
 }
 
 git_setup () {
+  env
   git config --global user.name ${GITHUB_ACTOR}
   git config --global user.email ${GITHUB_ACTOR}@users.noreply.github.com
-  git fetch --depth=1 origin +refs/tags/*:refs/tags/*
+  # git fetch --depth=1 origin +refs/tags/*:refs/tags/*
+  # if [ "${GITHUB_EVENT_NAME}" == 'pull_request' ]; then
+  #   git checkout "${GITHUB_HEAD_REF}"
+  #   # git reset --hard "${GITHUB_SHA}"
+  # fi
 }
 
 git_commit () {
@@ -63,7 +68,9 @@ update_doc "${INPUT_ACTION_DOCS_WORKING_DIR}"
 
 if [ "${INPUT_ACTION_DOCS_GIT_PUSH}" = "true" ]; then
   git_commit
-  git push origin HEAD:${GITHUB_REF}
+  # git switch -c "${GITHUB_HEAD_REF}"
+  git checkout -b "${GITHUB_HEAD_REF}"
+  git push origin HEAD:"${GITHUB_HEAD_REF}" -ff
 else
   git_changed
 fi
