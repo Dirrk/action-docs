@@ -18,6 +18,10 @@ inputs:
     description: Commit message
     required: false
     default: 'action-docs: automated action'
+  action_docs_debug_mode:
+    description: "Enable debug mode"
+    required: false
+    default: false
 
 # outputs:
 #   num_changed:
