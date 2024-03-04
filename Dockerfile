@@ -1,4 +1,4 @@
-FROM alpine:3.10
+FROM index.docker.io/library/alpine:3.10
 
 RUN set -x \
   && apk add --no-cache bash sed jq curl git wget \

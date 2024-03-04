@@ -19,7 +19,7 @@ git_changed () {
   debug_message "Into git_changed"
 
   GIT_FILES_CHANGED=`git status --porcelain | grep -E '([MA]\W).+' | wc -l`
-  echo "::set-output name=num_changed::${GIT_FILES_CHANGED}"
+  echo "num_changed=${GIT_FILES_CHANGED}" >> $GITHUB_OUTPUT
 
   debug_message "End git_changed"
 }
@@ -29,7 +29,7 @@ git_setup () {
 
   git config --global user.name ${GITHUB_ACTOR}
   git config --global user.email ${GITHUB_ACTOR}@users.noreply.github.com
-  git fetch --unshallow
+  if $(git rev-parse --is-shallow-repository); then git fetch --unshallow ; fi
   git checkout "${GITHUB_HEAD_REF}"
 
   debug_message "End git_setup"

@@ -1,0 +1,42 @@
+# To get started with Dependabot version updates, you'll need to specify which
+# package ecosystems to update and where the package manifests are located.
+# Please see the documentation for all configuration options:
+# https://docs.github.com/github/administering-a-repository/configuration-options-for-dependency-updates
+
+version: 2
+registries:
+  github: # Allow retrieval of private actions stored in GitHub git repository
+    type: git
+    url: https://github.com/
+    username: dependabot
+    password: ${{ secrets.DEPENDABOT_GITHUB_TOKEN }}
+updates:
+  - package-ecosystem: "github-actions" # Update used GitHub actions
+    registries: "*" # Use all defined registry/repository credentials
+    directory: "/"
+    schedule:
+      interval: "weekly" # Check for updates to GitHub Actions every week
+    open-pull-requests-limit: 2
+    pull-request-branch-name:
+      separator: "-" # Use '-' as a separator in update branch name instead of the default '/' potentially impacting builds
+    reviewers:
+      - "GLB-BDS-SF/bds-sf-team" # Make SF team aware of the PR by requesting a review of any changes introduced to used actions
+    commit-message:
+      prefix: "fix" # Prefix all actions' bump commit messages with "fix" to bump this action if it uses newer base actions
+      prefix-development: "fix" # ...even dev scope ones
+    groups:
+      actions:
+        patterns:
+          - "*"
+  - package-ecosystem: "docker" # See documentation for possible values
+    directory: "/" # Location of dockerfile
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 2
+    reviewers:
+      - "GLB-BDS-SF/bds-sf-team" # Assign SF team to review the PR to make us aware
+    pull-request-branch-name:
+      separator: "-"
+    commit-message:
+      prefix: "chore" # Prefix all commit messages with "chore: " to NOT bump with build container base OS changes
+      prefix-development: "chore" # ...even dev scope ones

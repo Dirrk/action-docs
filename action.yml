@@ -17,7 +17,7 @@ inputs:
   action_docs_git_commit_message:
     description: Commit message
     required: false
-    default: 'action-docs: automated action'
+    default: 'chore(action-docs): automated action'
   action_docs_debug_mode:
     description: "Enable debug mode"
     required: false
