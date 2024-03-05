@@ -27,6 +27,7 @@ git_changed () {
 git_setup () {
   debug_message "Into git_setup"
 
+  git config --global --add safe.directory /github/workspace
   git config --global user.name ${GITHUB_ACTOR}
   git config --global user.email ${GITHUB_ACTOR}@users.noreply.github.com
   if $(git rev-parse --is-shallow-repository); then git fetch --unshallow ; fi
