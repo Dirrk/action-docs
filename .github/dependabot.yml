@@ -4,15 +4,8 @@
 # https://docs.github.com/github/administering-a-repository/configuration-options-for-dependency-updates
 
 version: 2
-registries:
-  github: # Allow retrieval of private actions stored in GitHub git repository
-    type: git
-    url: https://github.com/
-    username: dependabot
-    password: ${{ secrets.DEPENDABOT_GITHUB_TOKEN }}
 updates:
   - package-ecosystem: "github-actions" # Update used GitHub actions
-    registries: "*" # Use all defined registry/repository credentials
     directory: "/"
     schedule:
       interval: "weekly" # Check for updates to GitHub Actions every week
