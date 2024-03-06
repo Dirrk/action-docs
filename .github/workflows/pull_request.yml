@@ -8,7 +8,7 @@ jobs:
     if: github.event.action == 'opened'
     runs-on: ubuntu-latest
     steps:
-      - uses: TimonVS/pr-labeler-action@v3
+      - uses: TimonVS/pr-labeler-action@v5
         with:
           configuration-path: .github/pr-labeler.yml
         env:
@@ -18,7 +18,7 @@ jobs:
     name: 'Build example docs'
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
       with:
         ref: ${{ github.event.pull_request.head.ref }}
 
